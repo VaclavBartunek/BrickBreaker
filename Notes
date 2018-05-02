@@ -1,0 +1,72 @@
+
+
+
+Menu............. 800* 500
+levels avaliable 1-10 ( 10 tiles with 10 buttons)
+level choose
+change colour of choosen level
+difficulty-beginner, advanced, master 
+difficulty choose
+change the colour of choosen difficulty 
+Type your name
+best scores
+Play
+
+
+Arena............. 800 *500
+
+level display
+round in level display
+score display
+pause- darken
+quit- get to main menu
+
+bullet
+more bullets
+
+player shown as a ball
+
+line heading one direction
+line heading the direction player is aiming
+line made of dots
+line of exact size
+line bouncing from walls 
+line bouncing from bricks
+
+mouse possition listener
+
+one brick
+more bricks on its possitions
+bricks move 
+bricks dissapear
+
+numbers on bricks
+numbers decrease- when 0 rectangle dissapears
+
+score table
+score increment
+
+level table
+level increment
+
+pause
+quit
+
+best scores
+
+round won
+show picture
+move lower
+
+game won
+store score
+
+Functionality
+collission of ball and rectangle
+colission of ball and sides
+colission of ball and bottom side
+
+
+
+
+
