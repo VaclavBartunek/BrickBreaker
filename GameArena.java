@@ -633,26 +633,31 @@ public class GameArena implements MouseListener
         return jfxPanel;
     }
     
-    
     //methods for the mouse listener
     public void mousePressed(MouseEvent e) {
-		
     }
 
     public void mouseReleased(MouseEvent e) {
 		System.out.println("x = "+e.getX());
-    }
-
+		System.out.println("y = "+e.getY());
+		 double mouseReleasedX= e.getX(); 
+		System.out.println( mouseReleasedX);
+	}
+	
     public void mouseEntered(MouseEvent e) {
-      
     }
 
-    public void mouseExited(MouseEvent e) {
-      
+    public void mouseExited(MouseEvent e) { 
     }
 
-    public void mouseClicked(MouseEvent e) {
-      		System.out.println("clicked = "+e.getX());
+    public void mouseClicked(MouseEvent e) {	
     }
+    //double mouseReleasedX= e.getX(); 
+    //double mouseReleasedY= e.getY(); 
+    
+	// public double getXReleasePosition(){
+	//return mouseReleasedX;
+	//}	
+   
 
 }
