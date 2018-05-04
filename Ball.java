@@ -135,6 +135,9 @@ public class Ball
 		return yBallSpeed;
 	}
 	
+	
+	
+	
 	/*public void removeBall(GameArena ga){
 		for(int i=0;i<myArray.length;i++){
 			ga.removeRectangle(myArray[i]);

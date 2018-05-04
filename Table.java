@@ -24,7 +24,7 @@ public class Table /*implements ActionListener*/{
 	private JLabel currentLevel2 = new JLabel(currentLevel.toString());
 	
 	private JLabel Score1 = new JLabel("Score");
-	private JLabel Score2 = new JLabel(score.toString());
+	private JLabel Score2 = new JLabel(score.toString(2568));
 	private GridLayout layout1 = new GridLayout(3,2);
 	
 	public Table(JFXPanel gamePanel){
