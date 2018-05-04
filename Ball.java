@@ -12,7 +12,8 @@ public class Ball
     private double yPosition;           // The Y coordinate of this Ball
     private double size;                // The diameter of this Ball
     private String colour;              // The colour of this Ball
-                                       
+    private int xBallSpeed =3;
+    private int yBallSpeed =3;                                 
 
     /**
      * Obtains the current position of this Ball.
@@ -117,12 +118,36 @@ public class Ball
      * @param col. The colour of the Ball. @see setColour for a description of permissable colours.
      *
      */
-    public Ball(double x, double y, double diameter, String col)
+    public Ball(double x, double y, double diameter, String col, int xsp, int ysp)
     {
+        xBallSpeed= xsp;
+        yBallSpeed= ysp;
         xPosition = x;
         yPosition = y;
         size = diameter;
         colour = col;
     }    
+    
+    public double  getXBallSpeed(){ //for bullet
+		return xBallSpeed;
+	}
+	public double  getYBallSpeed(){
+		return yBallSpeed;
+	}
+	
+	/*public void removeBall(GameArena ga){
+		for(int i=0;i<myArray.length;i++){
+			ga.removeRectangle(myArray[i]);
+		}*/
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 

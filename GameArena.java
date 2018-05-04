@@ -652,6 +652,11 @@ public class GameArena implements MouseListener
 
     public void mouseClicked(MouseEvent e) {	
     }
+    
+    /*public double getXMouseReleasedPos(){
+		return e.getX();
+	}   */
+    
     //double mouseReleasedX= e.getX(); 
     //double mouseReleasedY= e.getY(); 
     
