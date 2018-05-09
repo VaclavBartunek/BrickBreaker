@@ -8,31 +8,45 @@ public class Bullet{
 
 	private int i=0;
 	
-	public Rectangle[] myArray= new Rectangle[1];
+	//public Rectangle[] myArray= new Rectangle[1];
+	public Ball[] myArray= new Ball[1];  // new
 	
 	public Bullet(double xLocation, double yLocation){
 		xPosition = xLocation;
 		yPosition = yLocation;
-		myArray[i]= new Rectangle(xPosition,yPosition,50,50,"Yellow") ;
+		//myArray[i]= new Rectangle(xPosition,yPosition,50,50,"Yellow") ;
+		myArray[i]= new Ball(xPosition,yPosition,20,"Yellow",3,3) ;   // new
 		//System.out.println("Position = "+xPosition +", "+yPosition);
 	}
 	
 	public void addTo (GameArena ga){
 		for(int i=0;i<myArray.length;i++) {
-			ga.addRectangle(myArray[i]);
+			//ga.addRectangle(myArray[i]);
+			ga.addBall(myArray[i]);   //new
 			ga.update();
 		}
 	}	
 	public void move (GameArena ga){
-		//System.out.println("Position move = "+xPosition +", "+yPosition);
-
-		if(xPosition > 0 && yPosition > 0){	
-			myArray[i].setYPosition(myArray[i].getYPosition() - ySpeed);
+		if(xPosition >= 0 && xPosition<= ga.getArenaWidth()){
+			myArray[i].setXPosition(myArray[i].getXPosition() + xSpeed);
 		}
-		xPosition=myArray[0].getXPosition();
-	    yPosition=(myArray[0].getYPosition()/*-10*/);
-	         
+		
+		if(yPosition >= 0 && yPosition <= ga.getArenaWidth()){	
+			myArray[i].setYPosition(myArray[i].getYPosition() - ySpeed);	
+		}
+  
 	}
+	
+	public void bounce(GameArena ga){
+		if(myArray[i].getXPosition() > (ga.getArenaWidth()- myArray[i].getSize() )|| myArray[i].getXPosition() < 0 + myArray[i].getSize() ){
+			xSpeed=-xSpeed;
+		}
+		if(myArray[i].getYPosition() > ga.getArenaHeight() -myArray[i].getSize() || myArray[i].getYPosition() < 0 + myArray[i].getSize() ){
+			ySpeed=-ySpeed;
+		}
+	}
+	
+	
 	
 	public double  getXBullPos(){ //for bullet
 		return xPosition;
@@ -55,9 +69,9 @@ public class Bullet{
         this.yPosition = y;
     }
 	
-	public void removeRec(GameArena ga){
+	/*public void removeRec(GameArena ga){
 		for(int i=0;i<myArray.length;i++){
 			ga.removeRectangle(myArray[i]);
 		}
-	}
+	}*/
 }

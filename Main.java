@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Main  { //class 
 	
-	private static Bullet bull0;
+	
 	
 	public static void main(String[] args){ //main method
 	
@@ -20,8 +20,9 @@ public class Main  { //class
 		
 		GameArena ga = new GameArena(xArenaSize,yArenaSize,false); 
 		Table table = new Table(ga.getPanel());
-		bull0= new Bullet(250,500);
-		Ball b1 = new Ball(xArenaSize/2,yArenaSize-20,5,"#FFFF00",3,3);
+		
+		//Ball b1 = new Ball(xArenaSize/2,yArenaSize-20,5,"#FFFF00",3,3);
+		
 		
 		/*Ball balls=new Ball[50];
 		Ball[] balls = new Ball[50];// All the balls in our program
@@ -36,50 +37,44 @@ public class Main  { //class
 		}*/
 		
 		
-		
-		
-	
-	
 		//creating the bricks
 		Brick[] bricks= new Brick[50];
+		i=0;
 		for(int row=0; row<5; row ++){
-			for (int col=0; col<10; col++){
+			for (int col=0; col<10; col++){	
 			bricks[i]= new Brick(col*xBrickSize+25,row*yBrickSize+25,60);
 			bricks[i].addBrickTo(ga);  
 			i++;
 			}	
 		}
+		i=0;
+		//creating bullets
+		Bullet[] bullets= new Bullet[50];
+		
+		for(i=0;i<50;i++){
+			bullets[i]= new Bullet(250,400);
+			bullets[i].addTo(ga);
+			bullets[i].move(ga);
+		}
+	
+		
 		Player p1 = new Player (ga.getArenaWidth()/2,ga.getArenaHeight()-30,"Yellow",10);
 		Vector<Bullet> bullVector= new Vector<Bullet>();//list- like array but change positions of rows when one row is deleted
 		
 		p1.addTo(ga);
-		ga.addBall(b1);
-		bull0.addTo(ga);
+		//ga.addBall(b1);
+		//bull0.addTo(ga);  // working
 		ga.update();
-		
-		
 
-		double x=6;
-		double y=6;
-		int xSpeed= 3;	
-		int ySpeed= -6;
-			while(true){
-			b1.setXPosition(b1.getXPosition()+x);
-			b1.setYPosition(b1.getYPosition()-y);
-			//bouncing from sides
-			if (b1.getXPosition() >ga.getArenaWidth()){
-				x=-xSpeed;	
+		i=0;
+		while(true){
+		
+		ga.update();
+		// 
+		for(i=0;i<50;i++){     
+			bullets[i].move(ga);
+			bullets[i].bounce(ga);
 			}
-			if (b1.getXPosition() < 0+b1.getSize()/2){
-				x=xSpeed;
-			}	
-			if (b1.getYPosition() < 0+b1.getSize()/2){
-				y=ySpeed;
-			}	
-			//bullet move
-			bull0.move(ga);
-			ga.update();	
-			}
-	
+		}	
 	}
 }

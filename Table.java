@@ -14,7 +14,7 @@ public class Table /*implements ActionListener*/{
 	
 	private JPanel p0= new JPanel(); // main panel
 	private JPanel p1 = new JPanel(); // score panel
-	private JPanel p2GamePanel=new JPanel();
+	private JPanel p2GamePanel=new JPanel();// game arena
 	private JFrame f0= new JFrame("Menu Table");
 	
 	private JLabel changeLevel1 = new JLabel("Change Level to");
@@ -36,7 +36,7 @@ public class Table /*implements ActionListener*/{
 		f0.setVisible(true);  
 		
 		p0.add(p1);
-		p0.add(p2GamePanel);
+		p1.setSize(500,100);
 		p1.setLayout(layout1);
 		p1.add(changeLevel1);
 		p1.add(changeLevel2);
@@ -44,6 +44,7 @@ public class Table /*implements ActionListener*/{
 		p1.add(currentLevel2);
 		p1.add(Score1);
 		p1.add(Score2);
+		p0.add(p2GamePanel);
 		
 
 	}	
