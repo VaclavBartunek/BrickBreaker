@@ -17,7 +17,7 @@ public class Table /*implements ActionListener*/{
 	private JPanel p2GamePanel=new JPanel();// game arena
 	private JFrame f0= new JFrame("Menu Table");
 	
-	private JLabel changeLevel1 = new JLabel("Change Level to");
+	private JLabel changeLevel1 = new JLabel("Go to level");
 	private JTextField changeLevel2= new JTextField("type 1-10");
 	
 	private JLabel currentLevel1 = new JLabel("Current Level");

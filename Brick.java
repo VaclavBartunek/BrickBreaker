@@ -27,6 +27,14 @@ public class Brick{
 		
 		//ga.update();
 	}	
+	/*
+	 public double getXBrickPos(){
+		 for (int i=0; i<50; i++){ 
+			return ga.bricks[i].getYPosition;
+		}
+	}*/
+	
+	
 }
 
 

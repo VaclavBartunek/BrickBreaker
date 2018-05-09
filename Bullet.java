@@ -3,8 +3,8 @@ public class Bullet{
 	
 	private double xPosition=-1;
 	private double yPosition=-1;
-	private int xSpeed = 3;
-	private int ySpeed = 3;
+	private	double xSpeed = -2; // myArray[1].getXBallSpeed();
+	private int ySpeed = 4;
 
 	private int i=0;
 	
@@ -14,34 +14,33 @@ public class Bullet{
 	public Bullet(double xLocation, double yLocation){
 		xPosition = xLocation;
 		yPosition = yLocation;
-		//myArray[i]= new Rectangle(xPosition,yPosition,50,50,"Yellow") ;
-		myArray[i]= new Ball(xPosition,yPosition,20,"Yellow",3,3) ;   // new
-		//System.out.println("Position = "+xPosition +", "+yPosition);
+		myArray[i]= new Ball(xPosition,yPosition,5,"Yellow",10,10) ;   // new
+		
 	}
 	
 	public void addTo (GameArena ga){
 		for(int i=0;i<myArray.length;i++) {
-			//ga.addRectangle(myArray[i]);
 			ga.addBall(myArray[i]);   //new
 			ga.update();
 		}
 	}	
 	public void move (GameArena ga){
-		if(xPosition >= 0 && xPosition<= ga.getArenaWidth()){
+		if(xPosition >= 0 && xPosition<= 3*ga.getArenaWidth()){  //balls can move even if they are not in the panel
 			myArray[i].setXPosition(myArray[i].getXPosition() + xSpeed);
 		}
 		
-		if(yPosition >= 0 && yPosition <= ga.getArenaWidth()){	
+		if(yPosition >= 0 && yPosition <= 3*ga.getArenaWidth()){	
 			myArray[i].setYPosition(myArray[i].getYPosition() - ySpeed);	
 		}
   
 	}
 	
 	public void bounce(GameArena ga){
-		if(myArray[i].getXPosition() > (ga.getArenaWidth()- myArray[i].getSize() )|| myArray[i].getXPosition() < 0 + myArray[i].getSize() ){
+		if(myArray[i].getXPosition() >= (ga.getArenaWidth()- myArray[i].getSize()) &&  myArray[i].getYPosition() <= ga.getArenaHeight()  
+			|| myArray[i].getXPosition() <= (0 + myArray[i].getSize()) &&  myArray[i].getYPosition() <=ga.getArenaHeight()  ){
 			xSpeed=-xSpeed;
 		}
-		if(myArray[i].getYPosition() > ga.getArenaHeight() -myArray[i].getSize() || myArray[i].getYPosition() < 0 + myArray[i].getSize() ){
+		if(myArray[i].getYPosition() <= 0 + myArray[i].getSize() ){ //TOP bouncing
 			ySpeed=-ySpeed;
 		}
 	}

@@ -12,8 +12,8 @@ public class Ball
     private double yPosition;           // The Y coordinate of this Ball
     private double size;                // The diameter of this Ball
     private String colour;              // The colour of this Ball
-    private int xBallSpeed ;
-    private int yBallSpeed ;                                 
+    private int xBallSpeed=5 ;
+    private int yBallSpeed=5 ;                                 
 
     /**
      * Obtains the current position of this Ball.
@@ -133,6 +133,7 @@ public class Ball
 	}
 	public double  getYBallSpeed(){
 		return yBallSpeed;
+		
 	}
 	 
 	
