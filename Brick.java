@@ -9,6 +9,7 @@ public class Brick{
 	private int yBrickSize=50;
 	private Integer numOfHits;
 	
+	
 
 	private Rectangle rect;
 	private Text txt;
@@ -27,16 +28,24 @@ public class Brick{
 		
 		//ga.update();
 	}	
-	/*
-	 public double getXBrickPos(){
-		 for (int i=0; i<50; i++){ 
-			return ga.bricks[i].getYPosition;
-		}
-	}*/
 	
+	public double getXBrickPos(){
+		return xBrickPos;
+	}
+	public double getYBrickPos(){
+		return yBrickPos;
+	}
+	public double getYBrickSize(){
+		return yBrickSize;
+	}
+	public double geXtBrickSize(){
+		return xBrickSize;
+	}
+	public void DecreaseBrickScore(GameArena ga){ //setter ale nevim jak aplikovat
+		txt.setText("fifty");    
+	}
 	
 }
-
 
 /*
 	public Rectangle[] bricks= new Rectangle[50];

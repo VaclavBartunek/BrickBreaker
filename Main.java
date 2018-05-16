@@ -21,6 +21,8 @@ public class Main  { //class
 		int yInitialBullOffset=15;
 		int numOfBullets= 100;
 		int numOfBricks=50;
+		int brickScore=60;
+		
 		
 		GameArena ga = new GameArena(xArenaSize,yArenaSize,false); 
 		Table table = new Table(ga.getPanel());
@@ -30,7 +32,7 @@ public class Main  { //class
 		i=0;
 		for(int row=0; row<5; row ++){
 			for (int col=0; col<10; col++){	
-			bricks[i]= new Brick(col*xBrickSize+25,row*yBrickSize+25,60);
+			bricks[i]= new Brick(col*xBrickSize+25,row*yBrickSize+25,brickScore);
 			bricks[i].addBrickTo(ga);  
 			i++;
 			}	
@@ -48,19 +50,19 @@ public class Main  { //class
 		Player p1 = new Player (ga.getArenaWidth()/2,ga.getArenaHeight()-30,"Yellow",10);
 	
 		
-		p1.addTo(ga);
+		//p1.addTo(ga);
 		ga.update();
 
 		i=0;
 		while(true){
 		ga.update();
-		// 
 		for(i=0;i<numOfBullets;i++){     
 			bullets[i].move(ga);
-			bullets[i].bounce(ga);
+			bullets[i].bounce(ga,bricks);
+			
 			}
 		}
 		
-			
+		
 	}
 }

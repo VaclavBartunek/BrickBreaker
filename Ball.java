@@ -118,23 +118,16 @@ public class Ball
      * @param col. The colour of the Ball. @see setColour for a description of permissable colours.
      *
      */
-    public Ball(double x, double y, double diameter, String col, int xsp, int ysp)
+    public Ball(double x, double y, double diameter, String col)
     {
-        xBallSpeed= xsp;
-        yBallSpeed= ysp;
+       
         xPosition = x;
         yPosition = y;
         size = diameter;
         colour = col;
     }    
     
-    public double  getXBallSpeed(){ //for bullet
-		return xBallSpeed;
-	}
-	public double  getYBallSpeed(){
-		return yBallSpeed;
-		
-	}
+ 
 	 
 	
 	
