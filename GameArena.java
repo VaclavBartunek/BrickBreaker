@@ -30,7 +30,7 @@ import java.awt.event.*;
  *
  * @author Joe Finney
  */
-public class GameArena implements MouseListener
+public class GameArena 
 {
 	// Size of window
 	private int arenaWidth;
@@ -73,11 +73,9 @@ public class GameArena implements MouseListener
      * @param width The width of the window, in pixels.
      * @param height The height of the window, in pixels.
 	 */
-	public GameArena(int width, int height)
+	public GameArena(int width, int height, Game game)
 	{   
-        this(width, height, true);
-        //added for mouse listener
-        jfxPanel.addMouseListener(this);
+        this(width, height, true, game);        
     }
 
 	/**
@@ -88,7 +86,7 @@ public class GameArena implements MouseListener
      * @param height The height of the window, in pixels.
      * @param createWindow Determines if a JFrame containing the GameArena should be created (true) or not (false).
 	 */
-	public GameArena(int width, int height, boolean createWindow)
+	public GameArena(int width, int height, boolean createWindow, Game game)
 	{   
         this.arenaWidth = width;
         this.arenaHeight = height;
@@ -102,7 +100,9 @@ public class GameArena implements MouseListener
         // Create a JavaFX canvas as a Swing panel.
         jfxPanel = new JFXPanel();
         jfxPanel.setPreferredSize(new java.awt.Dimension(width, height));
-
+		//added for mouse listener
+        jfxPanel.addMouseListener(game);
+        
         // Create a window, if necessary.
         if (createWindow)
         {
@@ -337,6 +337,7 @@ public class GameArena implements MouseListener
 
             text.setX(t.getXPosition());
             text.setY(t.getYPosition());
+            text.setText(t.getText());
             text.setFont(javafx.scene.text.Font.font ("Verdana",t.getSize()));
             text.setFill(getColourFromString(t.getColour()));
         }
@@ -633,36 +634,5 @@ public class GameArena implements MouseListener
         return jfxPanel;
     }
     
-    //methods for the mouse listener
-    public void mousePressed(MouseEvent e) {
-    }
-
-    public void mouseReleased(MouseEvent e) {
-		System.out.println("x = "+e.getX());
-		System.out.println("y = "+e.getY());
-		 double mouseReleasedX= e.getX(); 
-		System.out.println( mouseReleasedX);
-	}
-	
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    public void mouseExited(MouseEvent e) { 
-    }
-
-    public void mouseClicked(MouseEvent e) {	
-    }
-    
-    /*public double getXMouseReleasedPos(){
-		return e.getX();
-	}   */
-    
-    //double mouseReleasedX= e.getX(); 
-    //double mouseReleasedY= e.getY(); 
-    
-	// public double getXReleasePosition(){
-	//return mouseReleasedX;
-	//}	
    
-
 }

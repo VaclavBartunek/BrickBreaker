@@ -8,7 +8,7 @@ public class Brick{
 	private int xBrickSize=50;
 	private int yBrickSize=50;
 	private Integer numOfHits;
-	
+	private boolean brickDisappeared= false;
 	
 
 	private Rectangle rect;
@@ -40,10 +40,29 @@ public class Brick{
 	}
 	public double geXtBrickSize(){
 		return xBrickSize;
+	} 
+	public int getXBrickOffset(){
+		return xBrickSize/2;
 	}
-	public void DecreaseBrickScore(GameArena ga){ //setter ale nevim jak aplikovat
-		txt.setText("fifty");    
+	public int getYBrickOffset(){
+		return yBrickSize/2;
 	}
+	public void setDecrease(GameArena ga){
+		numOfHits=numOfHits-1;
+		if(numOfHits > 0){
+			txt.setText(numOfHits.toString());		
+		}
+		else {
+			ga.removeRectangle(rect);
+			ga.removeText(txt);
+			brickDisappeared=true;
+		}
+	}
+	public boolean getBrickDisappeared(){
+	return brickDisappeared;	
+	}
+	
+	
 	
 }
 

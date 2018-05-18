@@ -3,12 +3,12 @@ public class Bullet{
 	
 	private double xPosition=250;
 	private double yPosition=490;
-	private	double xSpeed = -2; // myArray[1].getXBallSpeed();
-	private int ySpeed = 4; 
-	private int ballSize=5;
+	private	double xSpeed = -4/2; // myArray[1].getXBallSpeed();
+	private double ySpeed = -2/1; 
+	private double bullSize=5;
 	private int i=0;
 	private int brickOffset=25;
-	private int ballOffset= ballSize/2; 
+	private double bullOffset= bullSize/2; 
 	
 	//public Rectangle[] myArray= new Rectangle[1];
 	public Ball bullet ;
@@ -16,7 +16,7 @@ public class Bullet{
 	public Bullet(double xLocation, double yLocation){
 		xPosition = xLocation;
 		yPosition = yLocation;
-		bullet= new Ball(xPosition,yPosition,ballSize,"Yellow") ;   
+		bullet= new Ball(xPosition,yPosition,bullSize,"Yellow") ;   
 		
 	}
 	public void addTo (GameArena ga){
@@ -28,11 +28,15 @@ public class Bullet{
 	public void move (GameArena ga){
 		if(xPosition >= 0 && xPosition<= 3*ga.getArenaWidth()){  //balls can move even if they are not in the panel
 			bullet.setXPosition(bullet.getXPosition() + xSpeed);
+				xPosition = bullet.getXPosition() + xSpeed;
 		}
 		
 		if(yPosition >= 0 && yPosition <= 3*ga.getArenaWidth()){	
-			bullet.setYPosition(bullet.getYPosition() - ySpeed);	
-		}
+			bullet.setYPosition(bullet.getYPosition() + ySpeed);	
+			
+					yPosition = bullet.getYPosition() + ySpeed;
+		}	
+
 	}
 	public void bounce(GameArena ga, Brick[] br){
 		// Sides bouncing
@@ -44,21 +48,8 @@ public class Bullet{
 		if(bullet.getYPosition() <= 0 + bullet.getSize() ){ //TOP bouncing
 			ySpeed=-ySpeed;
 		}
-		// Brick bouncing
-		for(int j=0;j<50;j++){
-			//System.out.print( "Bullet"+bullet.getYPosition()+ " "+ "Brick"+brickArray[j].getYBrickPos()); 
-		if(bullet.getYPosition()-ballOffset <= br[j].getYBrickPos()+brickOffset) //bouncing from bottom of the brick
-			{ 
-				ySpeed=-ySpeed;
-				//  ga.decreaseBrickScore(br[j]);  //nevim jak vyvolat tuto metodu...
-				
-				//System.out.println(ySpeed+" ");
-				break; //when one bullet reaches brick it break and moves to next ball
-				
-				
-			}
-			
-		}
+		
+
 	}
 	
 	
@@ -82,6 +73,31 @@ public class Bullet{
     {
         this.yPosition = y;
     }
+    public double getBullOffset(){
+		return bullOffset;
+	}
+	public double getXBulletSpeed(){
+		return xSpeed;
+	}
+	 public void setXBulletSpeed(double x){
+        this.xSpeed = x;	
+    }
+    public double getYBulletSpeed(){
+		return ySpeed;
+	}
+	 public void setYBulletSpeed(double y){
+        this.ySpeed = y;	
+    }
+	 public double getBulletOffset(){
+		return bullSize/2;
+	}
+	
+	
+	
+	
+	/*public void removeBullet(GameArena ga,Bullet bullets){
+		ga.bullets.removeBall(); 
+	}*/
 	
 	/*public void removeRec(GameArena ga){
 		for(int i=0;i<myArray.length;i++){
