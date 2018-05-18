@@ -3,9 +3,9 @@ public class Bullet{
 	
 	private double xPosition=250;
 	private double yPosition=490;
-	private	double xSpeed = -4/2; // myArray[1].getXBallSpeed();
-	private double ySpeed = -2/1; 
-	private double bullSize=5;
+	private	double xSpeed = -3; // myArray[1].getXBallSpeed();
+	private double ySpeed = -3; 
+	private double bullSize=10; // its actually radius
 	private int i=0;
 	private int brickOffset=25;
 	private double bullOffset= bullSize/2; 
@@ -29,6 +29,8 @@ public class Bullet{
 		if(xPosition >= 0 && xPosition<= 3*ga.getArenaWidth()){  //balls can move even if they are not in the panel
 			bullet.setXPosition(bullet.getXPosition() + xSpeed);
 				xPosition = bullet.getXPosition() + xSpeed;
+				System.out.println("xPosition  : "+ bullet.getXPosition());
+				//System.out.println("xSpeed  : "+ xSpeed);
 		}
 		
 		if(yPosition >= 0 && yPosition <= 3*ga.getArenaWidth()){	
@@ -40,15 +42,17 @@ public class Bullet{
 	}
 	public void bounce(GameArena ga, Brick[] br){
 		// Sides bouncing
-		if(bullet.getXPosition() >= (ga.getArenaWidth()- bullet.getSize()) &&  bullet.getYPosition() <= ga.getArenaHeight()  
-			|| bullet.getXPosition() <= (0 + bullet.getSize()) &&  bullet.getYPosition() <=ga.getArenaHeight()  ){
+		if(bullet.getXPosition()+bullOffset >= (ga.getArenaWidth()) &&  bullet.getYPosition()+bullOffset <= ga.getArenaHeight()|| //right side
+			bullet.getXPosition()-bullOffset <= 0  &&  bullet.getYPosition() <=ga.getArenaHeight()  ){ //left side
 			xSpeed=-xSpeed; 
+			System.out.println("xSpeed  : "+ xSpeed);
 		}
+		
 		// TOP bouncing
 		if(bullet.getYPosition() <= 0 + bullet.getSize() ){ //TOP bouncing
 			ySpeed=-ySpeed;
+			
 		}
-		
 
 	}
 	
