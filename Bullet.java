@@ -3,12 +3,14 @@ public class Bullet{
 	
 	private double xPosition=250;
 	private double yPosition=490;
-	private	double xSpeed = -3; // myArray[1].getXBallSpeed();
-	private double ySpeed = -3; 
-	private double bullSize=10; // its actually radius
+	private	double xSpeed  /*=-3*/; // myArray[1].getXBallSpeed();
+	private double ySpeed  /*=-3*/; 
+	private double bullRadius=3.5;
+	private double bullSize=bullRadius*2; 
 	private int i=0;
 	private int brickOffset=25;
-	private double bullOffset= bullSize/2; 
+	private double bullOffset= bullRadius; 
+	
 	
 	//public Rectangle[] myArray= new Rectangle[1];
 	public Ball bullet ;
@@ -30,7 +32,7 @@ public class Bullet{
 			bullet.setXPosition(bullet.getXPosition() + xSpeed);
 				xPosition = bullet.getXPosition() + xSpeed;
 				System.out.println("xPosition  : "+ bullet.getXPosition());
-				//System.out.println("xSpeed  : "+ xSpeed);
+				System.out.println("xSpeed  : "+ xSpeed);
 		}
 		
 		if(yPosition >= 0 && yPosition <= 3*ga.getArenaWidth()){	
@@ -40,20 +42,27 @@ public class Bullet{
 		}	
 
 	}
-	public void bounce(GameArena ga, Brick[] br){
-		// Sides bouncing
-		if(bullet.getXPosition()+bullOffset >= (ga.getArenaWidth()) &&  bullet.getYPosition()+bullOffset <= ga.getArenaHeight()|| //right side
-			bullet.getXPosition()-bullOffset <= 0  &&  bullet.getYPosition() <=ga.getArenaHeight()  ){ //left side
+	public void bounce(GameArena ga, Brick[] br/*,Bullet[] bu*/){
+		//left side bouncing
+		if(bullet.getXPosition()-bullOffset <= 0  &&  bullet.getYPosition()+bullOffset <= ga.getArenaHeight()){ 
+			bullet.setXPosition(0+10); //fixing ataching balls to the sides
 			xSpeed=-xSpeed; 
-			System.out.println("xSpeed  : "+ xSpeed);
+			//System.out.println("xSpeed  : "+ xSpeed);
+		}
+		//right side bouncing
+		if(bullet.getXPosition()+bullOffset >= (ga.getArenaWidth()) &&  bullet.getYPosition()+bullOffset <= ga.getArenaHeight()){ 
+		  // bullet.setXPosition((ga.getArenaWidth()-10));//trying to fix ataching balls to the sides
+		   xSpeed=-xSpeed; 
 		}
 		
 		// TOP bouncing
-		if(bullet.getYPosition() <= 0 + bullet.getSize() ){ //TOP bouncing
+		else if(bullet.getYPosition() <= 0 + bullet.getSize() ){ //TOP bouncing
 			ySpeed=-ySpeed;
 			
 		}
-
+		if(bullet.getYPosition()>= ga.getArenaHeight()&& ySpeed>=0){
+			ga.removeBall(bullet);
+		}
 	}
 	
 	
@@ -71,11 +80,13 @@ public class Bullet{
 	}	
 	 public void setXBullPos(double x)
     {
-        this.xPosition = x;	
+        this.xPosition = x;
+        bullet.setXPosition(x);
     }
 	 public void setYBullPos(double y)
     {
         this.yPosition = y;
+        bullet.setYPosition(y);
     }
     public double getBullOffset(){
 		return bullOffset;
