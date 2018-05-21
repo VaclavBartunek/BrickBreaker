@@ -3,7 +3,7 @@ public class Bullet{
 	
 	private double xPosition=250;
 	private double yPosition=490;
-	private	double xSpeed  /*=-3*/; // myArray[1].getXBallSpeed();
+	private	double xSpeed  /*=-3*/; 
 	private double ySpeed  /*=-3*/; 
 	private double bullRadius=3.5;
 	private double bullSize=bullRadius*2; 
@@ -12,54 +12,48 @@ public class Bullet{
 	private double bullOffset= bullRadius; 
 	
 	
-	//public Rectangle[] myArray= new Rectangle[1];
+	
 	public Ball bullet ;
 	
 	public Bullet(double xLocation, double yLocation){
 		xPosition = xLocation;
 		yPosition = yLocation;
 		bullet= new Ball(xPosition,yPosition,bullSize,"Yellow") ;   
-		
 	}
+	//add bullet to game arena
 	public void addTo (GameArena ga){
-		 
 			ga.addBall(bullet);   
 			ga.update();
-		
 	}	
+	// move bullet
 	public void move (GameArena ga){
-		if(xPosition >= 0 && xPosition<= 3*ga.getArenaWidth()){  //balls can move even if they are not in the panel
-			bullet.setXPosition(bullet.getXPosition() + xSpeed);
-				xPosition = bullet.getXPosition() + xSpeed;
-				System.out.println("xPosition  : "+ bullet.getXPosition());
-				System.out.println("xSpeed  : "+ xSpeed);
-		}
 		
-		if(yPosition >= 0 && yPosition <= 3*ga.getArenaWidth()){	
+			bullet.setXPosition(bullet.getXPosition() + xSpeed);
+			xPosition = bullet.getXPosition() + xSpeed;
+			System.out.println("xPosition  : "+ bullet.getXPosition());
+			System.out.println("xSpeed  : "+ xSpeed);
 			bullet.setYPosition(bullet.getYPosition() + ySpeed);	
-			
-					yPosition = bullet.getYPosition() + ySpeed;
-		}	
+			yPosition = bullet.getYPosition() + ySpeed;
 
 	}
+	//bouncing of bullets from sides
 	public void bounce(GameArena ga, Brick[] br/*,Bullet[] bu*/){
-		//left side bouncing
+		// left side bouncing
 		if(bullet.getXPosition()-bullOffset <= 0  &&  bullet.getYPosition()+bullOffset <= ga.getArenaHeight()){ 
 			bullet.setXPosition(0+10); //fixing ataching balls to the sides
 			xSpeed=-xSpeed; 
 			//System.out.println("xSpeed  : "+ xSpeed);
 		}
-		//right side bouncing
+		// right side bouncing
 		if(bullet.getXPosition()+bullOffset >= (ga.getArenaWidth()) &&  bullet.getYPosition()+bullOffset <= ga.getArenaHeight()){ 
-		  // bullet.setXPosition((ga.getArenaWidth()-10));//trying to fix ataching balls to the sides
+		   bullet.setXPosition((ga.getArenaWidth()-10));//trying to fix ataching balls to the sides
 		   xSpeed=-xSpeed; 
 		}
-		
 		// TOP bouncing
-		else if(bullet.getYPosition() <= 0 + bullet.getSize() ){ //TOP bouncing
-			ySpeed=-ySpeed;
-			
+		if(bullet.getYPosition() <= 0 + bullet.getSize() ){ 
+			ySpeed=-ySpeed;	
 		}
+		// bottom side= remove ball
 		if(bullet.getYPosition()>= ga.getArenaHeight()&& ySpeed>=0){
 			ga.removeBall(bullet);
 		}
@@ -106,17 +100,4 @@ public class Bullet{
 	 public double getBulletOffset(){
 		return bullSize/2;
 	}
-	
-	
-	
-	
-	/*public void removeBullet(GameArena ga,Bullet bullets){
-		ga.bullets.removeBall(); 
-	}*/
-	
-	/*public void removeRec(GameArena ga){
-		for(int i=0;i<myArray.length;i++){
-			ga.removeRectangle(myArray[i]);
-		}
-	}*/
 }

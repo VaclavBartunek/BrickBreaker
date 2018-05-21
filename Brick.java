@@ -25,8 +25,6 @@ public class Brick{
 	public void addBrickTo (GameArena ga){
 		ga.addRectangle(rect);
 		ga.addText(txt);
-		
-		//ga.update();
 	}	
 	
 	public double getXBrickPos(){
@@ -66,17 +64,7 @@ public class Brick{
 	
 }
 
-/*
-	public Rectangle[] bricks= new Rectangle[50];
-	private double []xBrickPos= new double[50];
-	private double []yBrickPos= new double [50];
 
-	for(int row=0; row<5; row ++){
-		for (int col=0; col<10; col++){
-
-		bricks[i]= new Rectangle(xBrickPos,yBrickPos,xBrickSize,yBrickSize,"Yellow");
-		xBrickPos[i]= col*xBrickSize;
-		yBrickPos[i]= row*yBrickSize;*/
 
 
 

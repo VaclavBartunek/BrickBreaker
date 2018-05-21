@@ -36,7 +36,7 @@ public class Game implements MouseListener { //class
 		GameArena ga = new GameArena(xArenaSize,yArenaSize,false,this); 
 		Table table = new Table(ga.getPanel());
 		
-		//creating the bricks
+		//creating bricks
 		bricks= new Brick[numOfBricks];
 		i=0;
 		for(int row=0; row<5; row ++){
@@ -58,24 +58,17 @@ public class Game implements MouseListener { //class
 		
 		//create the arrow
 		arrow = new Arrow(250,490,250,490-arrowLength,5,"YELLOW",ga);
-		
-
-		Player p1 = new Player (ga.getArenaWidth()/2,ga.getArenaHeight()-30,"Yellow",10);
 	
-		
-		//p1.addTo(ga);		xPosition = bullet.getXPosition() + xSpeed;
 		ga.update();
-
+		
+		//main while loop
 		i=0;
 		while(true){
 			ga.update();
 			for(i=0;i<numOfBullets;i++){   
 				bullets[i].move(ga);
 				bullets[i].bounce(ga,bricks);
-				brickBounce(bullets[i],ga);
-				//bullets[i].brickBounce(bricks,bullets);
-				for(int  j=0;j<numOfBricks;j++){  	
-				}
+				brickBounce(bullets[i],ga);			
 			}
 		}		
 	}
@@ -86,23 +79,22 @@ public class Game implements MouseListener { //class
 		if (bricks[j].getBrickDisappeared()==false){
 			
 				//bottom of the brick	
-								//System.out.println("BULLET Y pos: "+  (bullet.getYBullPos()-bullet.getBullOffset()  ) );
-			
+				//System.out.println("BULLET Y pos: "+  (bullet.getYBullPos()-bullet.getBullOffset()  ) );
 			if (bullet.getYBullPos()-bullet.getBullOffset() <= bricks[j].getYBrickPos()+bricks[j].getYBrickOffset() &&   	// if the ball entres 5px wide area in the bottom of the brick, it bounces
 				bullet.getYBullPos()-bullet.getBullOffset() >= bricks[j].getYBrickPos()+bricks[j].getYBrickOffset()-10 &&  	// 5 because of the speed of the ball
-				bullet.getXBullPos()-bullet.getBullOffset() >= bricks[j].getXBrickPos()-bricks[j].getXBrickOffset()-2 && 	// left side (2 because ball Position is in not float and it dont detect the edges) 
-				bullet.getXBullPos()+bullet.getBullOffset() <= bricks[j].getXBrickPos()+bricks[j].getXBrickOffset()+2 )  	// right side 
+				bullet.getXBullPos()-bullet.getBullOffset() >= bricks[j].getXBrickPos()-bricks[j].getXBrickOffset()-0 && 	// left side (2 because ball Position is in not float and it dont detect the edges) 
+				bullet.getXBullPos()+bullet.getBullOffset() <= bricks[j].getXBrickPos()+bricks[j].getXBrickOffset()+0 )  	// right side 
 				{ 
 					bullet.setYBulletSpeed(-bullet.getYBulletSpeed()); 
 					System.out.println("Y pos: " + bricks[j].getYBrickPos() + "   X pos: " + bricks[j].getXBrickPos()  );
 					bricks[j].setDecrease(ga);
-					break; //when one bullet reaches brick it break and moves to next ball
+					break; //when one bullet reaches brick it breaks and moves to next ball
 				}
 				//right side of the brick
 			if ( bullet.getXBullPos()-bullet.getBullOffset() <= bricks[j].getXBrickPos()+bricks[j].getXBrickOffset()&&		// right side
 				  bullet.getXBullPos()-bullet.getBullOffset() >= bricks[j].getXBrickPos()+bricks[j].getXBrickOffset()-10 &&	// 5px forbidden area
-				  bullet.getYBullPos()-bullet.getBullOffset() >= bricks[j].getYBrickPos()-bricks[j].getYBrickOffset()-2 && 	// top of the brick
-				  bullet.getYBullPos()+bullet.getBullOffset() <= bricks[j].getYBrickPos()+bricks[j].getYBrickOffset()+2 )   // bottom of the brick
+				  bullet.getYBullPos()-bullet.getBullOffset() >= bricks[j].getYBrickPos()-bricks[j].getYBrickOffset()-0 && 	// top of the brick
+				  bullet.getYBullPos()+bullet.getBullOffset() <= bricks[j].getYBrickPos()+bricks[j].getYBrickOffset()+0 )   // bottom of the brick
 				{ 
 					bullet.setXBulletSpeed( - bullet.getXBulletSpeed() ); 
 					bricks[j].setDecrease(ga);
@@ -111,8 +103,8 @@ public class Game implements MouseListener { //class
 				//left side brick bouncing 
 			if ( bullet.getXBullPos()+bullet.getBullOffset() >= bricks[j].getXBrickPos()-bricks[j].getXBrickOffset()&&     // left side of the brick
 				  bullet.getXBullPos()+bullet.getBullOffset() <= bricks[j].getXBrickPos()-bricks[j].getXBrickOffset()+10 &&  // forbidden area of the brick
-				  bullet.getYBullPos()-bullet.getBullOffset() >= bricks[j].getYBrickPos()-bricks[j].getYBrickOffset()-2 &&	// top of the brick
-				  bullet.getYBullPos()+bullet.getBullOffset() <= bricks[j].getYBrickPos()+bricks[j].getYBrickOffset()+2 )	// bottom of the brick
+				  bullet.getYBullPos()-bullet.getBullOffset() >= bricks[j].getYBrickPos()-bricks[j].getYBrickOffset()-0 &&	// top of the brick
+				  bullet.getYBullPos()+bullet.getBullOffset() <= bricks[j].getYBrickPos()+bricks[j].getYBrickOffset()+0 )	// bottom of the brick
 				{ 
 					bullet.setXBulletSpeed( - bullet.getXBulletSpeed() ); 
 					bricks[j].setDecrease(ga);
@@ -121,8 +113,8 @@ public class Game implements MouseListener { //class
 				//Top collision with brick
 			if (bullet.getYBullPos()+bullet.getBullOffset() >= bricks[j].getYBrickPos()-bricks[j].getYBrickOffset() &&    	// top of the brick
 					bullet.getYBullPos()+bullet.getBullOffset() <= bricks[j].getYBrickPos()-bricks[j].getYBrickOffset()+10 &&  	// forbidden area
-					bullet.getXBullPos()-bullet.getBullOffset() >= bricks[j].getXBrickPos()-bricks[j].getXBrickOffset()-2 && 	// left side
-					bullet.getXBullPos()+bullet.getBullOffset() <= bricks[j].getXBrickPos()+bricks[j].getXBrickOffset()+2 ) 	// right side 
+					bullet.getXBullPos()-bullet.getBullOffset() >= bricks[j].getXBrickPos()-bricks[j].getXBrickOffset()-0 && 	// left side
+					bullet.getXBullPos()+bullet.getBullOffset() <= bricks[j].getXBrickPos()+bricks[j].getXBrickOffset()+0 ) 	// right side 
 				{ 
 					bullet.setYBulletSpeed(-bullet.getYBulletSpeed()); 
 					bricks[j].setDecrease(ga);
@@ -160,24 +152,16 @@ public class Game implements MouseListener { //class
 				 angle = -Math.PI+Math.atan((490-mouseY)/(250-mouseX));
 			//set the arrow 
 			arrow.setEnd(250+arrowLength*Math.cos(angle),490+arrowLength*Math.sin(angle));
-			System.out.println("angle : "+ (angle));
-			setBullets();
+			setBullets();				 // sets speed and initial offset of bullets
 			wasMouseClicked=true;
 		}
 	}
 	private void setBullets(){
 		for(int i=0;i<50;i++){	
-			bullets[i].setXBulletSpeed(3*Math.cos(angle)); //ball speed * cos angle
-			bullets[i].setYBulletSpeed(3*Math.sin(angle)); //ball speed * sin angle
+			bullets[i].setXBulletSpeed(5*Math.cos(angle)); //ball speed * cos angle
+			bullets[i].setYBulletSpeed(5*Math.sin(angle)); //ball speed * sin angle
 			bullets[i].setXBullPos(/*ga.getArenaWidth()/ 2*/250+ i*16*Math.cos(Math.PI-angle));
 			bullets[i].setYBullPos(/*ga.getArenaHeight()-6*/494 +i*16*Math.sin(Math.PI+angle));
-			
-			//System.out.println("angle : "+ i*16*Math.cos(Math.PI+angle));
-			
-		
 		}
 	}
-	
-
-
 }
